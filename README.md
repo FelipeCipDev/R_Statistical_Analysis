@@ -1,4 +1,4 @@
-# Projeto 4: Análise Estatística Avançada com R
+# Projeto: Análise Estatística Avançada com R
 
 Este projeto demonstra análises estatísticas avançadas utilizando R, incluindo testes de hipóteses, séries temporais, regressão e análise de sobrevivência. Ideal para portfólio, estudos e demonstração de habilidades analíticas.
 
