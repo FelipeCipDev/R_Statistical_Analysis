@@ -1,0 +1,56 @@
+---
+title: "Exemplo de Relatório Estatístico"
+author: "Seu Nome"
+date: "2025-11-16"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introdução
+
+Este relatório apresenta exemplos de análises estatísticas avançadas em R.
+
+# Teste de Hipóteses
+
+```{r}
+set.seed(123)
+vendas_grupo_a <- rnorm(50, mean=200, sd=20)
+vendas_grupo_b <- rnorm(50, mean=210, sd=22)
+t.test(vendas_grupo_a, vendas_grupo_b)
+```
+
+# Séries Temporais
+
+```{r}
+vendas <- 200 + 10 * (1:48) + 30 * sin(2 * pi * (1:48)/12) + rnorm(48, 0, 15)
+ts_data <- ts(vendas, frequency=12, start=c(2020,1))
+plot(ts_data)
+```
+
+# Regressão Logística
+
+```{r}
+idade <- round(runif(200, 18, 70))
+valor_contrato <- round(rnorm(200, 300, 80))
+prob_churn <- plogis(-5 + 0.05*idade - 0.01*valor_contrato)
+churn <- rbinom(200, 1, prob_churn)
+clientes <- data.frame(idade, valor_contrato, churn)
+glm_model <- glm(churn ~ idade + valor_contrato, family=binomial, data=clientes)
+summary(glm_model)
+```
+
+# Sobrevivência
+
+```{r}
+library(survival)
+grupos <- rep(c("A", "B"), each=50)
+tempo <- c(rexp(50, 0.1), rexp(50, 0.07))
+evento <- rbinom(100, 1, 0.8)
+df <- data.frame(tempo, evento, grupos)
+surv_object <- Surv(df$tempo, df$evento)
+km_fit <- survfit(surv_object ~ grupos, data=df)
+plot(km_fit, col=c("blue","red"), lwd=2)
+```
